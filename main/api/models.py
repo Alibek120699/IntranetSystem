@@ -32,3 +32,6 @@ class OfReg(models.Model):
 class Schedule(models.Model):
     pass
 
+class Semester(models.Model):
+    pass
+
