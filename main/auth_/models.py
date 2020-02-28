@@ -7,6 +7,8 @@ class Role(models.Model):
     TEACHER = 2
     OFFICE_REGISTER = 3
 
+    # is_teacher = models.BooleanField
+
     ROLE_CHOICES = (
         (STUDENT, 'STUDENT'),
         (TEACHER, 'TEACHER'),
