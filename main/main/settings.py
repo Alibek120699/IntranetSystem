@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_jwt',
 
-    'auth_',  # includes teacher, student, office_register models
-    'main',  # includes subject, schedule, gpa models
+    'users',  # includes teacher, student, office_register models
+    'api',  # includes subject, schedule, gpa models
 ]
 
-AUTH_USER_MODEL = 'auth_.MyUser'
+AUTH_USER_MODEL = 'users.MyUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
