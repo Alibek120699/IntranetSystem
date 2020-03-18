@@ -5,6 +5,9 @@ class Subject(models.Model):
     name = models.CharField(max_length=20)
     description = models.TextField(max_length=500, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.name}: {self.description}'
+
 
 class TeacherSubject(models.Model):
     teacher = models.ForeignKey('users.MyUser',
@@ -18,6 +21,9 @@ class TeacherSubject(models.Model):
     # s = Subject()
     # s.teachers.all()
 
+    def __str__(self):
+        return f'{self.teacher} {self.subject}'
+
 
 class SubjectStudent(models.Model):
     subject = models.ForeignKey(Subject,
@@ -30,4 +36,7 @@ class SubjectStudent(models.Model):
                                 related_name='student_subjects')
     # stud = MyUser(role=STUDENT)
     # stud.student_subjects.all()
+
+    def __str__(self):
+        return f'{self.subject} {self.student}'
 
