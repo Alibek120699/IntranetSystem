@@ -14,8 +14,16 @@ class MyUserManager(models.Manager):
     def get_office_registers(self):
         return self.filter(role=OFFICE_REGISTER)
 
-    def get_users(self):
-        return self.all()
+    def create_user(self, username, person, password=None):
+        if not username:
+            raise ValueError('User must have a valid username')
+
+        user = self.model(username=username, must_change_password=True, deleted=False,
+                          person=person)
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
 
 class MyUser(AbstractUser):
