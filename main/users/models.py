@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 
 from .constants import USER_ROLES_CHOICES, STUDENT, TEACHER, OFFICE_REGISTER
 
 
-class MyUserManager(models.Manager):
+class MyUserManager(UserManager):
     def get_teachers(self):
         return self.filter(role=TEACHER)
 
