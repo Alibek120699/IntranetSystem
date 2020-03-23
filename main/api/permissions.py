@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from main.users.constants import TEACHER, OFFICE_REGISTER
+from main.constants import TEACHER, OFFICE_REGISTER
 
 
 class IsAllowedToMark(BasePermission):
@@ -19,5 +19,15 @@ class IsAllowedToCreateDiscipline(BasePermission):
 
 
 class IsAllowedToUpdateDiscipline(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.role == OFFICE_REGISTER
+
+
+class IsAllowedToCreateTeacherSubject(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.role == OFFICE_REGISTER
+
+
+class IsAllowedToCreateSubjectStudent(BasePermission):
     def has_permission(self, request, view):
         return request.user.role == OFFICE_REGISTER
