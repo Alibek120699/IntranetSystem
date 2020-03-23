@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from main.constants import TEACHER, OFFICE_REGISTER
+from .constants import TEACHER, OFFICE_REGISTER
 
 
 class IsAllowedToMark(BasePermission):

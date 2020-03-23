@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Subject, TeacherSubject, SubjectStudent
-from main.constants import TEACHER, STUDENT
+from .constants import TEACHER, STUDENT
 
 
 class SubjectSerializer(serializers.Serializer):

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
 
-from main.constants import USER_ROLES_CHOICES, STUDENT, TEACHER, OFFICE_REGISTER
+from .constants import USER_ROLES_CHOICES, STUDENT, TEACHER, OFFICE_REGISTER
 
 
 class MyUserManager(UserManager):
