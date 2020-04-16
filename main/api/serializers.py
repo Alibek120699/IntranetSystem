@@ -39,3 +39,4 @@ class SubjectStudentSerializer(serializers.ModelSerializer):
     def validate_student(self, student):
         if student.role != STUDENT:
             raise serializers.ValidationError('Student must be provided for creating Subject Student')
+        return student
