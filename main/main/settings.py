@@ -173,3 +173,59 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     'JWT_AUTH_COOKIE': None,
 }
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s [%(levelname)s] - %(message)s'
+        },
+        'main': {
+            'format': '[%(levelname)s] - %(message)s'
+        }
+    },
+    'handlers': {
+        'warning': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',
+            'formatter': 'verbose'
+        },
+        'error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',
+            'formatter': 'verbose'
+        },
+        'debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'info': {
+            'handlers': ['console', 'debug'],
+            'level': 'DEBUG',
+        },
+        'api': {
+            'handlers': ['debug', 'console'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console', 'warning'],
+            'level': 'WARNING',
+        }
+    },
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

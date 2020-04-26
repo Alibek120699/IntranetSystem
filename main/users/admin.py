@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import MyUser, Profile
+from .models import MyUser, Profile, ProfileTeacher, ProfileStudent
 
 
 class InlineProfile(admin.StackedInline):
@@ -13,9 +13,14 @@ class InlineProfile(admin.StackedInline):
 
 @admin.register(MyUser)
 class MyUserAdmin(UserAdmin):
-    inlines = (InlineProfile, )
+    inlines = (InlineProfile,)
 
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'bio')
+@admin.register(ProfileTeacher)
+class ProfileTeacherAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'bio', 'img', 'position')
+
+
+@admin.register(ProfileStudent)
+class ProfileStudentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'bio', 'img', 'faculty')
