@@ -7,10 +7,10 @@ from rest_framework.response import Response
 from ..permissions import IsAllowedToCreateTeacherSubject, \
     IsAllowedToCreateSubjectStudent, IsAllowedToCreateDiscipline, IsAllowedToViewTakenSubjectMarkStudents, \
     IsAllowedToViewSubjectStudents, IsAllowedToCheckAttendance, IsAllowedToViewAttendance
-from ..models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent
+from ..models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent, News
 from ..serializers import SubjectSerializer, TeacherSubjectSerializer, \
     SubjectStudentSerializer, StudentTakenSubjectSerializer, TakenSubjectSerializer, TeacherAttendanceStudentSerializer, \
-    AttendanceStudentSerializer
+    AttendanceStudentSerializer, NewsSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -152,6 +152,17 @@ class AttendanceStudentAPIView(mixins.ListModelMixin,
     queryset = AttendanceStudent.objects.all()
     serializer_class = AttendanceStudentSerializer
     permission_classes = (IsAuthenticated, IsAllowedToViewAttendance)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+
+class NewsListAPIView(mixins.ListModelMixin,
+                            generics.GenericAPIView):
+    http_method_names = ['get']
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

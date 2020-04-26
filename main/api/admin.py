@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent
+from .models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent, News
 
 
 # TakenSubjectStudent
@@ -29,3 +29,8 @@ class TakenSubject(admin.ModelAdmin):
 @admin.register(AttendanceStudent)
 class AttendanceStudent(admin.ModelAdmin):
     list_display = ('id', 'subject', 'student', 'attendance')
+
+
+@admin.register(News)
+class News(admin.ModelAdmin):
+    list_display = ('id', 'title')
