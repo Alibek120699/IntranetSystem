@@ -1,11 +1,12 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
+
 from .views import SubjectStudentListCreateAPIView, SubjectStudentViewSet, \
     TeacherSubjectListCreateAPIView, TeacherSubjectViewSet, \
     SubjectCreateListAPIView, SubjectViewSet, TeacherTakenSubjectStudentListViewSet, TeacherTakenSubjectCreateApiView, \
     TeacherAttendanceStudentViewSet, StudentTakenSubjectViewSet, AttendanceStudentViewSet, StudentTakenSubjectApiView, \
-    AttendanceStudentAPIView, TeacherAttendanceStudentCreateAPIView
+    AttendanceStudentAPIView, TeacherAttendanceStudentCreateAPIView, NewsListAPIView
 
 urlpatterns = [
     path('subjects/', SubjectCreateListAPIView.as_view()),
@@ -15,7 +16,7 @@ urlpatterns = [
     path('taken_subject_student/', StudentTakenSubjectApiView.as_view()),
     path('teacher_add_attendance/', TeacherAttendanceStudentCreateAPIView.as_view()),
     path('check_student_attendance/', AttendanceStudentAPIView.as_view()),
-
+    path('news/', NewsListAPIView.as_view()),
 ]
 
 router = DefaultRouter()

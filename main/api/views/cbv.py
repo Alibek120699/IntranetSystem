@@ -157,9 +157,8 @@ class AttendanceStudentAPIView(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-
 class NewsListAPIView(mixins.ListModelMixin,
-                            generics.GenericAPIView):
+                      generics.GenericAPIView):
     http_method_names = ['get']
     queryset = News.objects.all()
     serializer_class = NewsSerializer
