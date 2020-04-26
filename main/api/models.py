@@ -121,3 +121,11 @@ class AttendanceStudent(models.Model):
     student = models.ForeignKey('users.MyUser',
                                 on_delete=models.CASCADE)
     attendance = models.CharField(choices=ATTENDANCE, max_length=50, default=PARTICIPATE)
+
+
+class News(models.Model):
+    title = models.CharField(max_length=250)
+
+
+    def __str__(self):
+        return f'{self.title}'

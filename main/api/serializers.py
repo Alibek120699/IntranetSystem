@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent
+from .models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent, News
 from .constants import TEACHER, STUDENT
 
 
@@ -104,3 +104,10 @@ class AttendanceStudentSerializer(serializers.ModelSerializer):
         if student.role != STUDENT:
             raise serializers.ValidationError('Student must be provided for view Subject Student Marks')
         return student
+
+
+class NewsSerializer(serializers.Serializer):
+    class Meta:
+        model = News
+
+        fields = ('title',)
