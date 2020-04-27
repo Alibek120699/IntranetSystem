@@ -19,9 +19,10 @@ class TeacherSubjectListCreateAPIView(mixins.CreateModelMixin,
                                       mixins.ListModelMixin,
                                       generics.GenericAPIView):
     http_method_names = ['get', 'post']
-    queryset = TeacherSubject.objects.all()
+    # queryset = TeacherSubject.objects.all()
+    queryset = TeacherSubject.objects.select_related('subject', 'teacher')
     serializer_class = TeacherSubjectSerializer
-    permission_classes = (IsAuthenticated, IsAllowedToCreateTeacherSubject)
+    # permission_classes = (IsAuthenticated, IsAllowedToCreateTeacherSubject)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)

@@ -22,9 +22,14 @@ class SubjectSerializer(serializers.Serializer):
 
 
 class TeacherSubjectSerializer(serializers.ModelSerializer):
+    teacher = MyUserSerializer(read_only=True)
+    teacher_id = serializers.IntegerField(write_only=True)
+    subject = SubjectSerializer(read_only=True)
+    subject_id = serializers.IntegerField(write_only=True)
+
     class Meta:
         model = TeacherSubject
-        fields = ('teacher', 'subject')
+        fields = ('teacher', 'subject', 'teacher_id', 'subject_id')
 
     def validate_teacher(self, teacher):
         if teacher.role != TEACHER:
