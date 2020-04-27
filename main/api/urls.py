@@ -8,8 +8,12 @@ from .views import SubjectStudentListCreateAPIView, SubjectStudentViewSet, \
     TeacherAttendanceStudentViewSet, StudentTakenSubjectViewSet, AttendanceStudentViewSet, StudentTakenSubjectApiView, \
     AttendanceStudentAPIView, TeacherAttendanceStudentCreateAPIView, NewsListAPIView
 
+from .views import subject_view, subject_detail_view
+
 urlpatterns = [
     path('subjects/', SubjectCreateListAPIView.as_view()),
+    path('fbv_subjects/', subject_view),
+    path('fbv_subjects/<int:pk>/', subject_detail_view),
     path('teacher_subjects/', TeacherSubjectListCreateAPIView.as_view()),
     path('subject_students/', SubjectStudentListCreateAPIView.as_view()),
     path('taken_subject_teacher/', TeacherTakenSubjectCreateApiView.as_view()),

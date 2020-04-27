@@ -1,3 +1,3 @@
-from .fbv import *
+from .fbv import subject_view, subject_detail_view
 from .cbv import TeacherSubjectListCreateAPIView, SubjectCreateListAPIView, SubjectStudentListCreateAPIView, TeacherTakenSubjectCreateApiView, StudentTakenSubjectApiView, TeacherAttendanceStudentCreateAPIView, AttendanceStudentAPIView, NewsListAPIView
 from .viewsets import TeacherSubjectViewSet, SubjectViewSet, SubjectStudentViewSet, TeacherTakenSubjectStudentListViewSet, StudentTakenSubjectViewSet, TeacherAttendanceStudentViewSet, AttendanceStudentViewSet
