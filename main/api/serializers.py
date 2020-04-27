@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Subject, TeacherSubject, SubjectStudent, TakenSubject, AttendanceStudent, News
 from .constants import TEACHER, STUDENT
+from users.serializers import MyUserSerializer
 
 
 class SubjectSerializer(serializers.Serializer):
@@ -32,9 +33,14 @@ class TeacherSubjectSerializer(serializers.ModelSerializer):
 
 
 class SubjectStudentSerializer(serializers.ModelSerializer):
+    student = MyUserSerializer(read_only=True)
+    student_id = serializers.IntegerField(write_only=True)
+    subject = SubjectSerializer(read_only=True)
+    subject_id = serializers.IntegerField(write_only=True)
+
     class Meta:
         model = SubjectStudent
-        fields = ('student', 'subject')
+        fields = ('student', 'student_id', 'subject', 'subject_id')
 
     def validate_student(self, student):
         if student.role != STUDENT:

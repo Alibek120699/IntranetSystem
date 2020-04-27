@@ -41,9 +41,11 @@ class SubjectStudentListCreateAPIView(mixins.ListModelMixin,
                                       mixins.CreateModelMixin,
                                       generics.GenericAPIView):
     http_method_names = ['get', 'post']
-    queryset = SubjectStudent.objects.all()
     serializer_class = SubjectStudentSerializer
-    permission_classes = (IsAuthenticated, IsAllowedToCreateSubjectStudent)
+    # permission_classes = (IsAuthenticated, IsAllowedToCreateSubjectStudent)
+
+    def get_queryset(self):
+        return SubjectStudent.objects.select_related('student', 'subject')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -65,7 +67,7 @@ class SubjectCreateListAPIView(mixins.CreateModelMixin,
     http_method_names = ['post', 'get']
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
-    permission_classes = (IsAllowedToCreateDiscipline,)
+    # permission_classes = (IsAllowedToCreateDiscipline,)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
