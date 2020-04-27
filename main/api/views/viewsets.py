@@ -1,6 +1,11 @@
 import logging
+from django.db.models import Count
+
 from rest_framework import viewsets, mixins
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from ..models import Subject, TeacherSubject, SubjectStudent, AttendanceStudent, TakenSubject
 from ..serializers import SubjectSerializer, TeacherSubjectSerializer, \
     SubjectStudentSerializer, TakenSubjectSerializer
@@ -52,6 +57,13 @@ class SubjectViewSet(mixins.RetrieveModelMixin,
         logger.error(f'Subject with {instance.id} id was deleted')
         logger.critical(f'Subject with {instance.id} id was deleted')
         instance.delete()
+
+    @action(methods=['GET'], detail=False)
+    def subject_report(self, request):
+        data = [
+            Subject.objects.values('course_code').annotate(Count('id')),
+        ]
+        return Response(data)
 
 
 class SubjectStudentViewSet(mixins.RetrieveModelMixin,

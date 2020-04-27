@@ -9,6 +9,8 @@ class SubjectSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
     description = serializers.CharField(required=True)
+    course_code = serializers.CharField()
+    semester = serializers.CharField()
 
     def create(self, validated_data):
         subject = Subject(**validated_data)
@@ -29,7 +31,7 @@ class TeacherSubjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TeacherSubject
-        fields = ('teacher', 'subject', 'teacher_id', 'subject_id')
+        fields = ('teacher', 'subject', 'teacher_id', 'subject_id', 'course_code', 'semester')
 
     def validate_teacher(self, teacher):
         if teacher.role != TEACHER:
