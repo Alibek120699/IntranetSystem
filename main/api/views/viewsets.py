@@ -62,6 +62,7 @@ class SubjectViewSet(mixins.RetrieveModelMixin,
     def subject_report(self, request):
         data = [
             Subject.objects.values('course_code').annotate(Count('id')),
+            Subject.objects.values('semester').annotate(Count('id')),
         ]
         return Response(data)
 
